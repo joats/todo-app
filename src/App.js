@@ -19,10 +19,14 @@ class App extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    this.setState({
-      text: '',
-      items: [...this.state.items, this.state.text],
-    });
+    if(this.state.text === '') {
+      console.error('input empty');
+    } else {
+      this.setState({
+        text: '',
+        items: [...this.state.items, this.state.text],
+      });
+    }
   }
 
   onRemove(itemToBeDeleted) {
