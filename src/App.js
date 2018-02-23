@@ -13,11 +13,11 @@ class App extends Component {
     }
   }
 
-  onChange = (event) => {
+  onChange(event) {
     this.setState({text: event.target.value});
   }
 
-  onSubmit = (event) => {
+  onSubmit(event) {
     event.preventDefault()
     if(this.state.text === '') {
       console.error('input empty');
@@ -29,11 +29,10 @@ class App extends Component {
     }
   }
 
-  onRemove(itemToBeDeleted) {
+  onRemove(itemToBeRemoved) {
     var newItems = this.state.items.filter((_item) => {
-      return _item !== itemToBeDeleted
+      return _item !== itemToBeRemoved
     });
-
     this.setState({ items: newItems });
   }
 
@@ -42,8 +41,8 @@ class App extends Component {
       <Row className="App">
         <Col className="p-4">
           <h1>Shit I gotta do</h1>
-          <Form className="pb-4" onSubmit={this.onSubmit}>
-            <Input className="mb-2" value={this.state.text} onChange={this.onChange} />
+          <Form className="pb-4" onSubmit={this.onSubmit.bind(this)}>
+            <Input className="mb-2" value={this.state.text} onChange={this.onChange.bind(this)} />
             <Button className="Btn">
               Add shit
             </Button>
